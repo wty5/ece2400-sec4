@@ -1,0 +1,28 @@
+#=========================================================================
+# GitHub Actions Configuration
+#=========================================================================
+
+name: GitHub Actions Workflow
+on: [push, pull_request]
+jobs:
+  SEC4:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependencies
+        run: |-
+          sudo apt-get update
+          sudo apt-get install -y lcov valgrind
+      - name: check out repository
+        uses: actions/checkout@v2
+      - name: avg test
+        run: |-
+          gcc -g -coverage -o avg-test avg-test.c ece2400-stdlib.c
+          ./avg-test
+      - name: sort test
+        run: |-
+          gcc -g -coverage -o sort-test sort-test.c ece2400-stdlib.c
+          ./sort-test
+      - name: coverage
+        run: |-
+          lcov --capture --directory . --output-file coverage.info
+          lcov --list coverage.info
