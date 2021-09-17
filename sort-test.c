@@ -3,12 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void sort( int* x_ptr, int* y_ptr )
-{
-  if ( (*x_ptr) < (*y_ptr) ) {
+void sort(int*x_ptr,int*y_ptr) {
+  if ((*x_ptr)<(*y_ptr)) {
     int temp = *x_ptr;
-    *x_ptr   = *y_ptr;
-    *y_ptr   = temp;
+      *x_ptr = *y_ptr;
+        *y_ptr = temp;
   }
 }
 
